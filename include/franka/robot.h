@@ -82,7 +82,7 @@ class Robot {
    * @throw IncompatibleVersionException if this version of `libfranka` is not supported.
    */
   explicit Robot(const std::string& franka_address,
-                 RealtimeConfig realtime_config = RealtimeConfig::kEnforce,
+                 RealtimeConfig realtime_config = RealtimeConfig::kIgnore,
                  size_t log_size = 50);
 
   /**
@@ -170,7 +170,7 @@ class Robot {
    * @see Robot::Robot to change behavior if realtime priority cannot be set.
    */
   void control(std::function<Torques(const RobotState&, franka::Duration)> control_callback,
-               bool limit_rate = true,
+               bool limit_rate = false,
                double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -200,7 +200,7 @@ class Robot {
   void control(
       std::function<Torques(const RobotState&, franka::Duration)> control_callback,
       std::function<JointPositions(const RobotState&, franka::Duration)> motion_generator_callback,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -230,7 +230,7 @@ class Robot {
   void control(
       std::function<Torques(const RobotState&, franka::Duration)> control_callback,
       std::function<JointVelocities(const RobotState&, franka::Duration)> motion_generator_callback,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -260,7 +260,7 @@ class Robot {
   void control(
       std::function<Torques(const RobotState&, franka::Duration)> control_callback,
       std::function<CartesianPose(const RobotState&, franka::Duration)> motion_generator_callback,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -290,7 +290,7 @@ class Robot {
   void control(std::function<Torques(const RobotState&, franka::Duration)> control_callback,
                std::function<CartesianVelocities(const RobotState&, franka::Duration)>
                    motion_generator_callback,
-               bool limit_rate = true,
+               bool limit_rate = false,
                double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -318,7 +318,7 @@ class Robot {
   void control(
       std::function<JointPositions(const RobotState&, franka::Duration)> motion_generator_callback,
       ControllerMode controller_mode = ControllerMode::kJointImpedance,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -346,7 +346,7 @@ class Robot {
   void control(
       std::function<JointVelocities(const RobotState&, franka::Duration)> motion_generator_callback,
       ControllerMode controller_mode = ControllerMode::kJointImpedance,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -374,7 +374,7 @@ class Robot {
   void control(
       std::function<CartesianPose(const RobotState&, franka::Duration)> motion_generator_callback,
       ControllerMode controller_mode = ControllerMode::kJointImpedance,
-      bool limit_rate = true,
+      bool limit_rate = false,
       double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
@@ -402,7 +402,7 @@ class Robot {
   void control(std::function<CartesianVelocities(const RobotState&, franka::Duration)>
                    motion_generator_callback,
                ControllerMode controller_mode = ControllerMode::kJointImpedance,
-               bool limit_rate = true,
+               bool limit_rate = false,
                double cutoff_frequency = kDefaultCutoffFrequency);
 
   /**
